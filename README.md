@@ -24,5 +24,5 @@
       # 使用8899端口
       http = 0.0.0.0:8899
       pidfile = project-master.pid
-  (11)激活虚拟环境下、venv目录下启动uwsgi: nohup uwsgi uwsgi.ini &,nohup表断开ssh后uwsgi进程不会挂起,&表后台运行，注意此时直接断开ssh链接进程依然会停止，故需输入exit手动退出ssh即可保持进程运行
+  (11)启动uwsgi进程:激活虚拟环境、venv目录下: nohup uwsgi uwsgi.ini &,nohup表断开ssh后uwsgi进程不会挂起,&表后台运行，注意此时直接断开ssh链接进程依然会停止，故需输入exit手动退出ssh即可保持进程运行,杀uwsgi进程:killall -9 uwsgi,查看uwsgi进程:ps -ef | grep uwsgi
 2.Nginx:似乎flask自带web服务器，所以nginx用不上了，要的话可以参考https://www.jianshu.com/p/f1acbd401bed
