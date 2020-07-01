@@ -26,3 +26,15 @@
       pidfile = project-master.pid
   (11)启动uwsgi进程:激活虚拟环境、venv目录下: nohup uwsgi uwsgi.ini &,nohup表断开ssh后uwsgi进程不会挂起,&表后台运行，注意此时直接断开ssh链接进程依然会停止，故需输入exit手动退出ssh即可保持进程运行,杀uwsgi进程:killall -9 uwsgi,查看uwsgi进程:ps -ef | grep uwsgi
 2.Nginx:似乎flask自带web服务器，所以nginx用不上了，要的话可以参考https://www.jianshu.com/p/f1acbd401bed
+
+
+centOS&mysql服务端:
+(1)由于yum源没有mysql资源，所以安装：yum -y install wget来下载mysql，下载mysql：wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm ，安装：rpm -ivh mysql-community-release-el7-5.noarch.rpm，最后安装mysql：yum install mysql-server
+(2)启动mysql：systemctl start mysqld，查询mysql运行状态：service  mysqld  status
+
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
