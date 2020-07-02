@@ -10,7 +10,7 @@
   (5)安装虚拟环境包pip3 install virtualenv
   (6)新建一个目录用于安装虚拟环境进行开发，/lwf为例;
   (7)进入lwf安装虚拟环境 /usr/local/python3/bin/virtualenv  -p /usr/bin/python3 venv，第一个目录表示虚拟环境包命令行所在目录，-p 目录表指定要安装虚拟环境的python版本，安装完后会生成一个venv目录
-  (8)激活虚拟环境 source venv/bin/activate
+  (8)激活虚拟环境 source venv/bin/activate ，退出虚拟环境 deactivate即可
   (9)虚拟环境下安装pip install uwsgi、pip install flask
   (10)进入venv文件夹新建配置文件uwsgi.ini
       [uwsgi]
@@ -29,12 +29,11 @@
 
 
 centOS&mysql服务端:
-(1)由于yum源没有mysql资源，所以安装：yum -y install wget来下载mysql，下载mysql：wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm ，安装：rpm -ivh mysql-community-release-el7-5.noarch.rpm，最后安装mysql：yum install mysql-server
-(2)启动mysql：systemctl start mysqld，查询mysql运行状态：service  mysqld  status
-
-(3)
-(4)
-(5)
-(6)
-(7)
-(8)
+(1)由于yum源没有mysql-server资源（当然也可以直接安装yum install mariadb-server mariadb替代mysql-server），所以安装：yum -y install wget来下载mysql，下载mysql：wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm ，安装：rpm -ivh mysql-community-release-el7-5.noarch.rpm，最后安装mysql：yum install mysql-server
+(2)启动暂停mysql服务：systemctl start/stop/restart mysqld，查询mysql运行状态：service  mysqld  status
+(3)登录sql：mysql -u root -p，首次安装root用户没有密码，可以在登录后修改密码set password for 'root'@'localhost' =password('xxxxx');，
+(4)新建用户：create user 'username'@'%' identified by 'password'; 
+(5)远程链接（云服务器记得开启3306端口）把在所有数据库的所有表的所有权限赋值给位于所有IP地址的root用户：mysql> grant all privileges on *.* to 帐号@'%'identified by '密码';,flush privileges;命令立即生效
+(6)显示所有数据库show databases; 创建/删除数据库create/drop database xxx; 选择使用某一个数据库use xxx; 显示已选数据库的表show tables;
+(7)建表create table user(id int,username varchar(255),password varchar(255),PRIMARY KEY (id));
+(8)显示使用端口show global variables like 'port';
